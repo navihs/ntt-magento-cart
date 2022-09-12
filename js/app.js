@@ -1,15 +1,3 @@
-new Vue({
-  el: '#app',
-  data: {
-  },
-  methods: {
-    
-  },
-  mounted(){
-    
-  }
-})
-
 const SuiteCRM = {
   login: () => {
     let bodyFormData = new FormData();
@@ -38,20 +26,34 @@ const SuiteCRM = {
     })
   }
 }
+const decodeEntities = (function() {
+  // this prevents any overhead from creating the object each time
+  var element = document.createElement('div');
 
-async function start(){
-  // Login CRM API
-  SuiteCRM.login()
-  .then((loginResponse) => {
-    Conf.crm.auth_token = loginResponse.data
-  })
-  .then(() => {
-    // Get CRM Account by PhoneNumber
-    return SuiteCRM.getAccountByPhoneNumber("3312345678")
-  })
-  .then((getAccountResponse) => {
-    console.log(getAccountResponse.data)
-  })
-}
+  function decodeHTMLEntities (str) {
+    if(str && typeof str === 'string') {
+      // strip script/html tags
+      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+      element.innerHTML = str;
+      str = element.textContent;
+      element.textContent = '';
+    }
 
-start();
+    return str;
+  }
+
+  return decodeHTMLEntities;
+})();
+
+new Vue({
+  el: '#app',
+  data: {
+  },
+  methods: {
+    
+  },
+  mounted(){
+    
+  }
+})
