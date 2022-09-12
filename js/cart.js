@@ -19,7 +19,7 @@ Vue.component('cart',{
                 <td style="padding:12px"><img :src="entry.product.image.url" style="height:46px;"/></td>
                 <td>
                     <a :href="'https://www.rexel.fr/frx'+entry.product.productUrl">{{decodeEntities(entry.product.productName)}}</a><br>
-                    <span class="badge badge-primary" v-for="category in entry.product.categories">{{decodeEntities(category.name)}} </span>
+                    <span class="badge badge-primary" style="margin-right:2px" v-for="category in entry.product.categories">{{decodeEntities(category.name)}}</span>
                 </td>
                 <td>{{entry.product.productCode}}</td>
                 <td>{{entry.quantity}}</td>

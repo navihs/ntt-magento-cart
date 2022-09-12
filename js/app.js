@@ -1,9 +1,9 @@
 const SuiteCRM = {
   login: () => {
     let bodyFormData = new FormData();
-      bodyFormData.append('grant_type', 'client_credentials');
-      bodyFormData.append('client_id', Conf.crm.client_id);
-      bodyFormData.append('client_secret', Conf.crm.client_secret);
+    bodyFormData.append('grant_type', 'client_credentials');
+    bodyFormData.append('client_id', Conf.crm.client_id);
+    bodyFormData.append('client_secret', Conf.crm.client_secret);
   
     return axios({
       method: 'post',
