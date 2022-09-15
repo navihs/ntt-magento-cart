@@ -10,6 +10,20 @@ let Conf = {
         auth_token: {
             token_type: "Bearer", 
             access_token: ""
+    },
+        options: {
+            forceUseCartField: false
+        }
+    },
+    magento: {
+        hostname: "",
+        mediaCatalog: "/media/catalog/product/cache/fefefazfez"
+    },
+    api: {
+        hostname: "",
+        urls: {
+            carts: "",
+            products: ""
         }
     }
 }

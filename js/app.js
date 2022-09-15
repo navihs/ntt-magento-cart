@@ -26,6 +26,22 @@ const SuiteCRM = {
     })
   }
 }
+
+const Api = {
+  getCartsByCustomerId: (customerId) => {
+    return axios({
+      method: 'get',
+      url: `${Conf.api.hostname}${Conf.api.urls.carts}/${customerId}`,
+    })
+  },
+  getProductBySKU: (productSKU) => {
+    return axios({
+      method: 'get',
+      url: `${Conf.api.hostname}${Conf.api.urls.products}/${productSKU}`,
+    })
+  } 
+}
+
 const decodeEntities = (function() {
   // this prevents any overhead from creating the object each time
   var element = document.createElement('div');
