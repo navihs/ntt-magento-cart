@@ -1,7 +1,7 @@
 Vue.component('cart',{
     template: `
-    <div class="grid-container--fluid">
-    <h4>Cart</h4>
+    <div class="grid-container--fluid" style="margin-top:12px">
+    <h4><span class="fa fa-shopping-cart"></span> Cart</h4>
     <div class="table-responsive scrollbars">
     <table class="table table-hover" v-if="suitecrm_cart">
         <thead>
@@ -16,7 +16,7 @@ Vue.component('cart',{
         </thead>
         <tbody>
             <tr v-for="entry in suitecrm_cart.entries">
-                <td style="padding:12px"><img :src="entry.product.image.url" style="height:46px;"/></td>
+                <td><img :src="entry.product.image.url" style="height:24px;"/></td>
                 <td>
                     <a :href="'https://www.rexel.fr/frx'+entry.product.productUrl">{{decodeEntities(entry.product.productName)}}</a><br>
                     <span class="badge badge-primary" style="margin-right:2px" v-for="category in entry.product.categories">{{decodeEntities(category.name)}}</span>
@@ -37,7 +37,7 @@ Vue.component('cart',{
         </tr>
         </tfoot>
     </table>
-    <table class="table table-hover" v-if="magento_cart">
+    <table class="table table-hover mini-table" v-if="magento_cart">
         <thead>
             <tr>
                 <th>Picture</th>
@@ -50,7 +50,7 @@ Vue.component('cart',{
         </thead>
         <tbody>
             <tr v-for="item in magento_cart.items">
-                <td style="padding:12px"><img :src="getMagentoProductImage(item.sku)" style="height:46px;"/></td>
+                <td><img :src="getMagentoProductImage(item.sku)" style="height:24px;"/></td>
                 <td>{{item.name}}
                 </td>
                 <td>{{item.sku}}</td>
