@@ -1,17 +1,17 @@
 Vue.component('cart',{
     template: `
     <div class="grid-container--fluid" style="margin-top:12px">
-    <h4><span class="fa fa-shopping-cart"></span> Cart</h4>
+    <h4><span class="fa fa-shopping-cart"></span> {{t("Cart")}}</h4>
     <div class="table-responsive scrollbars">
     <table class="table table-hover" v-if="suitecrm_cart">
         <thead>
             <tr>
-                <th>Picture</th>
-                <th>Product</th>
-                <th>Product Code</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Stock</th>
+                <th>{{t("Picture")}}</th>
+                <th>{{t("Product")}}</th>
+                <th>{{t("ProductCode")}}</th>
+                <th>{{t("Qty")}}</th>
+                <th>{{t("Price")}}</th>
+                <th>{{t("Stock")}}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,12 +40,12 @@ Vue.component('cart',{
     <table class="table table-hover mini-table" v-if="magento_cart">
         <thead>
             <tr>
-                <th>Picture</th>
-                <th>Product</th>
-                <th>Product Code</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Stock</th>
+              <th>{{t("Picture")}}</th>
+              <th>{{t("Product")}}</th>
+              <th>{{t("ProductCode")}}</th>
+              <th>{{t("Qty")}}</th>
+              <th>{{t("Price")}}</th>
+              <th>{{t("Stock")}}</th>
             </tr>
         </thead>
         <tbody>
@@ -76,10 +76,23 @@ Vue.component('cart',{
       return {
         magento_cart: null,
         suitecrm_cart: null,
-        magento_products: []
+        magento_products: [],
+        language: "fr",
+        texts: {
+          Picture: {"fr": "Image", "en": "Picture"},
+          Product: {"fr": "Produit", "en": "Product"},
+          ProductCode: {"fr": "Code Produit", "en": "Product Code"},
+          Qty: {"fr": "Qté", "en": "Qty"},
+          Price: {"fr": "Prix", "en": "Price"},
+          Stock: {"fr": "Stock", "en": "Stock"},
+          Cart: {"fr": "Panier", "en": "Cart"},
+        }
       }
     },
     methods: {
+        t(text){
+          return this.texts[text][this.language];
+        },
         calculateMagentoTotal() {
           if(this.magento_cart && this.magento_cart.items.length > 0)
             return this.magento_cart.items.reduce((total, current) => total + current.qty * current.price, 0)
@@ -150,6 +163,11 @@ Vue.component('cart',{
         }
     },
     mounted(){
+      
+      let langParameter = location.search.match(/lang=([^&]*)/gi);
+      if(langParameter[0])
+        this.language = langParameter[0].split("=")[1]
+
       this.start();
     }
   })
