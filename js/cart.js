@@ -165,7 +165,7 @@ Vue.component('cart',{
     mounted(){
       
       let langParameter = location.search.match(/lang=([^&]*)/gi);
-      if(langParameter[0])
+      if(langParameter)
         this.language = langParameter[0].split("=")[1]
 
       this.start();
